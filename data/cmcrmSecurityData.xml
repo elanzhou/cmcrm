@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the cmcrm Component." permissionId="CMCRM_VIEW"/>
+    <SecurityPermission description="Create operations in the cmcrm Component." permissionId="CMCRM_CREATE"/>
+    <SecurityPermission description="Update operations in the cmcrm Component." permissionId="CMCRM_UPDATE"/>
+    <SecurityPermission description="Delete operations in the cmcrm Component." permissionId="CMCRM_DELETE"/>
+    <SecurityPermission description="ALL operations in the cmcrm Component." permissionId="CMCRM_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="CMCRM_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CMCRM_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CMCRM_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CMCRM_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="CMCRM_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="CMCRM_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="CMCRM_ADMIN"/>
+</entity-engine-xml>
