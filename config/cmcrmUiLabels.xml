@@ -12,4 +12,13 @@
     <property key="cmcrmViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
     </property>
+
+    <property key="cmcrmOrgStructure">
+        <value xml:lang="en">Org Structure</value>
+        <value xml:lang="zh">组织架构</value>
+    </property>
+    <property key="title_company_root">
+        <value xml:lang="en">/</value>
+        <value xml:lang="zh">公司架构</value>
+    </property>
 </resource>

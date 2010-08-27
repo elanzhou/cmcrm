@@ -46,4 +46,24 @@
             </widgets>
         </section>
     </screen>
+
+    <screen name="PartyGroupTreeLine">
+        <section>
+            <widgets>
+                <link target="org" text="${partyAndGroup.groupName}">
+                    <parameter param-name="view" value="userlists"/>
+                    <parameter param-name="partyId" value="${partyAndGroup.partyId}"/>
+                </link>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="PartyPersonTreeLine">
+        <section>
+            <widgets>
+                <label text="${partyAndPerson.firstName} ${partyAndPerson.lastName}" style="tabletext"/>
+            </widgets>
+        </section>
+    </screen>
+
 </screens>

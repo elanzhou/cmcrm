@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+
+    <screen name="OrgMain">
+        <section>
+            <actions>
+            </actions>
+            <widgets>
+                <decorator-screen name="cmcrmCommonDecorator" location="component://cmcrm/widget/CommonScreens.xml">
+                    <decorator-section name="body">
+                        <section>
+                            <actions>
+                                
+                            </actions>
+                            <widgets>
+                                <container style="lefthalf2">
+                                    <include-screen name="OrgTree"/>
+                                </container>
+                                <link text="[create sub ou]"/>
+                                <link text="[remove the ou]"/>
+                                <link text="[change name]"/>
+                                <screenlet title="${partyAndGroup.groupName}" navigation-form-name="ListEmploymentsPerson">
+                                    <include-form name="ListEmploymentsPerson" location="component://cmcrm/widget/forms/OrgForms.xml"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="OrgTree">
+        <section>
+            <actions>
+                <set field="partyId" value="Company"/>
+            </actions>
+            <widgets>
+                <screenlet title="${uiLabelMap.title_company_root}">
+                    <section>
+                        <widgets>
+                            <include-tree name="OrgTree" location="component://cmcrm/widget/DepartmentTrees.xml"/>
+                        </widgets>
+                    </section>
+                </screenlet>
+            </widgets>
+        </section>
+    </screen>
+
+</screens>
