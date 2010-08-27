@@ -14,15 +14,15 @@
                                 
                             </actions>
                             <widgets>
-                                <container style="lefthalf2">
+                                <container style="float:left;width:30%;">
                                     <include-screen name="OrgTree"/>
                                 </container>
                                 <link text="[create sub ou]"/>
                                 <link text="[remove the ou]"/>
                                 <link text="[change name]"/>
-                                <screenlet title="${partyAndGroup.groupName}" navigation-form-name="ListEmploymentsPerson">
-                                    <include-form name="ListEmploymentsPerson" location="component://cmcrm/widget/forms/OrgForms.xml"/>
-                                </screenlet>
+                                <!--<screenlet title="${partyAndGroup.groupName}" navigation-form-name="ListEmploymentsPerson">-->
+                                    <!--<include-form name="ListEmploymentsPerson" location="component://cmcrm/widget/forms/OrgForms.xml"/>-->
+                                <!--</screenlet>-->
                             </widgets>
                         </section>
                     </decorator-section>
