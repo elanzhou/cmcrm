@@ -7,6 +7,7 @@
             <actions>
                 <property-map resource="cmcrmUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="HumanResUiLabels" map-name="uiLabelMap" global="true"/> 
 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.cmcrmCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.cmcrmCompanySubtitle" global="true"/>

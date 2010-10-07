@@ -2,29 +2,59 @@
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
-    <screen name="OrgMain">
+    <screen name="cmcrmOrgLayout">
         <section>
-            <actions>
-            </actions>
             <widgets>
                 <decorator-screen name="cmcrmCommonDecorator" location="component://cmcrm/widget/CommonScreens.xml">
                     <decorator-section name="body">
                         <section>
-                            <actions>
-                                
-                            </actions>
                             <widgets>
-                                <container style="float:left;width:30%;">
-                                    <include-screen name="OrgTree"/>
+                                <container style="cmcrm-main">
+                                    <container style="cmcrm-slim-left">
+                                        <decorator-section-include name="orgtree"/>
+                                    </container>
+                                    <container style="cmcrm-big-right">
+                                        <container style="cmcrm-right-top-button">
+                                            <decorator-section-include name="button"/>
+                                        </container>
+                                        <container style="cmcrm-right-content" >
+                                            <decorator-section-include name="content"/>
+                                        </container>
+                                    </container>
                                 </container>
-                                <link text="[create sub ou]"/>
-                                <link text="[remove the ou]"/>
-                                <link text="[change name]"/>
-                                <!--<screenlet title="${partyAndGroup.groupName}" navigation-form-name="ListEmploymentsPerson">-->
-                                    <!--<include-form name="ListEmploymentsPerson" location="component://cmcrm/widget/forms/OrgForms.xml"/>-->
-                                <!--</screenlet>-->
                             </widgets>
                         </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="OrgMain">
+        <section>
+            <actions>
+                <set field="titleProperty" value="HumanResFindEmployment"/>
+                <set field="headerItem" value="Employment"/>
+                <set field="roleTypeIdFrom" from-field="parameters.roleTypeIdFrom"/>
+                <set field="roleTypeIdTo" from-field="parameters.roleTypeIdTo"/>
+                <set field="partyIdFrom" from-field="parameters.partyIdFrom"/>
+                <set field="partyIdTo" from-field="parameters.partyIdTo"/>
+                <set field="fromDate" from-field="parameters.fromDate"/>
+                <set field="employmentCtx" from-field="parameters"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="cmcrmOrgLayout" location="component://cmcrm/widget/orgScreens.xml">
+                    <decorator-section name="orgtree">
+                        <include-screen name="OrgTree"/>
+                    </decorator-section>
+                    <decorator-section name="button">
+                        <container style="button-bar">
+                            <link text="[create sub ou]"/>
+                            <link text="[remove the ou]"/>
+                            <link text="[change name]"/>
+                        </container>
+                    </decorator-section>
+                    <decorator-section name="content">
+                        <include-form name="ListEmploymentsPerson" location="component://cmcrm/widget/forms/OrgForms.xml"/>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

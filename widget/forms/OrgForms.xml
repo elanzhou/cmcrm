@@ -62,7 +62,7 @@
                 <parameter param-name="partyId" from-field="partyIdTo"/>
             </hyperlink>
         </field>
-        <field name="lastName"><display></display></field>
+        <field name="lastName" title="${uiLabelMap.}"><display></display></field>
         <field name="firstName"><display></display></field>
         <field name="editLink" title="${uiLabelMap.CommonEmptyHeader}" widget-style="buttontext">
             <hyperlink target="EditEmployment" description="${uiLabelMap.CommonEdit}">
