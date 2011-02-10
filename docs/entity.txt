@@ -1,0 +1,241 @@
+party
+party-group
+party-type
+
+party类别 ( type )
+	party : party-classification : party-type
+	party-type:
+		组织(party_group)
+			非正规组织(informal group)
+				家庭(family	)
+				团队(team)
+			正规组织
+				企业
+				政府机构
+			获知CM途径
+			来源
+			行业
+		个人(person)
+
+party分类 ( classification )
+	party : party classification : party classification group
+	( group 是某个type的具体的值 )
+	party classification type:
+		eeoc
+		minority
+		industry
+		size
+		income
+		organization
+		person
+		trade
+			wholesale
+			retail
+		annual revenue
+		number of employees
+		value rating
+		sic code
+		ownership
+
+角色类型( role-type )
+	paryt : party-role : role-type
+	role-type:
+		个人
+			内部员工/雇员
+			客户联系人
+		组织
+			OrgUnit
+				部门
+				分公司
+				区
+			最终客户
+			中间商
+			竞争对手
+			合作伙伴
+			渠道
+			公司
+			运营商
+			
+	Main
+		organization
+			association ( 协会 )
+			carrier
+			competitor
+			household
+			internal organization
+				other internal organization
+			organization unit
+				department
+				division
+				subsidiary
+				parent organization unit
+				other organization unit
+			partner
+			regulatory agency ( 管理机构 )
+			supplier
+			tax authority ( 税务机关 )
+			union ( 协会，工会 )
+			
+		sfa ( sales force autm. )
+			account
+			contact
+			lead
+	Account Lead
+	Admin
+		limited administrator
+	Agent
+	automated_agent
+	calendar
+		calendar attendee ( 日历到会者 )
+		calendar delegate ( 历法代表? )
+		calendar host
+		calendar organizer
+		calendar owner
+		calendar member
+	client
+	communication participant
+		addressee ( 收件人 )
+		cc
+		bcc
+		originator
+	consumer
+	contractor
+	customer
+		bill-to customer
+		bulk customer
+		end-user customer
+		placing-customer ( 直销 )
+		ship-to customer
+	distribution channel
+		distributor ( 经销商 )
+	isp
+	hosting server
+	manufacturer
+	_NA_ ( not applicable )
+	owner
+	prospect (潜在客户)
+	person
+		employee ( 雇员 )
+			buyer
+			cashier
+			manager
+			order clerk ( 定货登记员 )
+			packer
+			picker
+			receiver
+			shipment clerk
+			stocker
+			worker
+		sales representative
+			affiliate
+		sponsor
+		spouse
+		supplier agent
+		family member
+		email administrator
+	referer
+	request manager
+	requesting party
+	request taker
+	shareholder ( 股东 )
+	subscriber
+	vendor
+		bill-from vendor
+		ship-from vendor
+	visitor
+	web master
+	workflow
+		workflow owner
+	accountant ( 会计 )
+	logged in
+	content member
+		content administrator
+		content publisher
+		content editor
+		content author
+		content user
+		content guest
+	FAM_ASSIGNEE ( fixed asset maint assignee ) 固定资产保养者？
+		FAM supplier
+		FAM manager
+		FAM worker
+	project team
+		client manager
+		client analyst
+		client billing
+		provider manager
+		provider accounting
+		provider analyst
+		provider validator
+		provider functional
+		provider tester
+	
+			
+party关系
+	party-role : party-relationship : party-relationship-type
+	
+	from-role, to-role, relationship
+	Department, Department, organization rollup (测试组 和 研发中心)
+	最终客户,	服务提供者,	customer	(139作为最终客户 和 coremail)
+	企业邮箱运营商,	企业邮箱运营商, 竞争对手 (139作为企业邮箱运营商 和 coremail)		
+	雇员,		公司,		雇佣关系	
+
+
+GEO type
+        行政区划：
+            country ( 国家 )
+            region ( 地区 )
+                ---- 省 ----
+                province ( 省 )
+                state ( 州 )
+                municipality ( 直辖市/自治市/区 )
+                    ---- 地区/市 ----
+                    city ( 市 )
+                    city-municipality (自治州) *
+                    region-municipality ( 直辖市所属区 ) *
+                        ---- 县 ----
+                        region-city ( 市所属区 ) *
+                        county ( 县 )
+                        county-city ( 县级市 )
+
+            GeoId生成方式：
+                countryId_provinceId_cityId_countyId
+                countryId_电话区号_邮政编码_剩下4位 (62^4)
+                3           4       6
+		
+		group
+		postal code
+		territory
+			sales territory
+			service territory
+
+
+
+GEO association type
+        GROUP_MEMBER    : 如中国属于亚洲
+        REGIONS         : 如sales territory华北区包括北京等省份，那么GeoAssoc中:
+                            geoId=“北京”等省份,
+                            geoIdTo=“销售华北区”,
+                            geoAssocTypeId=REGIONS
+        COUNTY_SEAT     : 县城
+
+        一个区对应多个邮政编码的情况？一个邮政编码对应多条街道的情况？
+
+
+销售区域与联系事件查看权限的对应关系?
+
+
+ContactMechType
+    ELECTRONIC_ADDRESS
+        EMAIL_ADDRESS
+        IP_ADDRESS
+        DOMAIN_NAME
+        WEB_ADDRESS
+        INTERNAL_PARTYID
+        LDAP_ADDRESS
+    TELECOM_NUMBER (TelecomNumber表)
+    POSTAL_ADDRESS (PostAddress表)
+
+
+GEO 和 电话国家编码、区号的关系?
+
