@@ -1,0 +1,39 @@
+<mockup version="1.0" skin="sketch" measuredW="511" measuredH="267" mockupW="403" mockupH="170">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="98" y="87" w="403" h="170" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u5BFC%u5165GEO%u4FE1%u606F</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::TextInput" x="205" y="117" w="135" h="-1" measuredW="91" measuredH="26" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u9009%u62E9%u6587%u4EF6%u4E0A%u4F20</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="340" y="116" w="-1" h="-1" measuredW="52" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u6D4F%u89C8</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="159" y="119" w="31" h="22" measuredW="31" measuredH="22" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u4E0A%u4F20</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="255" y="202" w="-1" h="-1" measuredW="52" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u63D0%u4EA4</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="159" y="154" w="31" h="22" measuredW="31" measuredH="22" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u56FD%u5BB6</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::ComboBox" x="205" y="154" w="187" h="-1" measuredW="60" measuredH="22" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%u56FD%u5BB6</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
