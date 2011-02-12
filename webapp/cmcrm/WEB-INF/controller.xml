@@ -27,6 +27,14 @@
     <request-map uri="authview"><security https="true" auth="true"/><response name="success" type="view" value="main"/></request-map>
     <request-map uri="org"><security https="true" auth="false"/><response name="success" type="view" value="org"/></request-map>
     <request-map uri="tools"><security auth="true"/><response name="success" type="view" value="tools"/></request-map>
+    <request-map uri="geoimporter">
+        <security auth="true"/>
+        <event type="java" path="com.elanzone.cmcrm.tools.geo.GeoImporter"
+               invoke="importService"/>
+        <response name="success" type="view" value="tools"/>
+        <response name="sync_success" type="view" value="tools"/>
+        <response name="error" type="view" value="tools"/>
+    </request-map>
 
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://cmcrm/widget/cmcrmScreens.xml#main"/>

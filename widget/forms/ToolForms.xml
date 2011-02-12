@@ -11,7 +11,7 @@
             </drop-down>
         </field>
         <field name="file" title="${uiTools.geoimport_filename}"><file/></field>
-        <field name="submit" title="aaa"><submit/></field>
+        <field name="submit" title="${uiTools.action_geoimport}"><submit/></field>
     </form>
 
 </forms>

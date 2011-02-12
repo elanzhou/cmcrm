@@ -16,4 +16,8 @@
         <value xml:lang="en">country</value>
         <value xml:lang="zh">国家</value>
     </property>
+    <property key="action_geoimport">
+        <value xml:lang="en">import</value>
+        <value xml:lang="zh">导入</value>
+    </property>
 </resource>
