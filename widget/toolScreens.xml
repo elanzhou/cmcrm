@@ -9,8 +9,9 @@
             <widgets>
                 <decorator-screen name="cmcrmCommonDecorator" location="component://cmcrm/widget/CommonScreens.xml">
                     <decorator-section name="body">
-                        <container>
-                            
+                        <container style="div">
+                            <label>${uiTools.geoimport_title}</label>
+                            <include-form name="geo_importer" location="component://cmcrm/widget/forms/ToolForms.xml"/>
                         </container>
                     </decorator-section>
                 </decorator-screen>

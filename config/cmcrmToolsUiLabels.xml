@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <property key="page_tools">
+        <value xml:lang="en">Tools</value>
+        <value xml:lang="zh">工具箱</value>
+    </property>
+    <property key="geoimport_title">
+        <value xml:lang="en">GEO Importer</value>
+        <value xml:lang="zh">GEO信息导入</value>
+    </property>
+    <property key="geoimport_filename">
+        <value xml:lang="en">GEO file name</value>
+        <value xml:lang="zh">GEO文件名</value>
+    </property>
+    <property key="geoimport_country">
+        <value xml:lang="en">country</value>
+        <value xml:lang="zh">国家</value>
+    </property>
+</resource>

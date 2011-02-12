@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+        <!-- this file is intentionally empty and is used in the build.xml file in the ofbiz root directory  -->
+    <form name="geo_importer" target="geoimporter" title="${uiTools.geoimport_title}" type="single">
+        <field name="country" title="${uiTools.geoimport_country}">
+            <drop-down allow-empty="false" allow-multiple="false">
+                <option key="CHN" description="China"/>
+            </drop-down>
+        </field>
+        <field name="file" title="${uiTools.geoimport_filename}"><file/></field>
+        <field name="submit" title="aaa"><submit/></field>
+    </form>
+
+</forms>
