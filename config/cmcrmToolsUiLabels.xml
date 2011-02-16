@@ -20,4 +20,17 @@
         <value xml:lang="en">import</value>
         <value xml:lang="zh">导入</value>
     </property>
+
+    <property key="geoimport.no_files_uploaded">
+        <value xml:lang="en">no files uploaded</value>
+        <value xml:lang="zh">请选择上传的Geo数据文件</value>
+    </property>
+    <property key="geoimport.no_jdbc_driver">
+        <value xml:lang="en">jdbc driver not found</value>
+        <value xml:lang="zh">未找到对应的数据库驱动</value>
+    </property>
+    <property key="geoimport.not_specify_country">
+        <value xml:lang="en">not specify country</value>
+        <value xml:lang="zh">请指定数据对应的国家</value>
+    </property>
 </resource>
