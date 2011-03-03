@@ -194,14 +194,14 @@ GEO type
                     city-municipality (自治州) *
                     region-municipality ( 直辖市所属区 ) *
                         ---- 县 ----
-                        region-city ( 市所属区 ) *
                         county ( 县 )
                         county-city ( 县级市 )
+                        region-city ( 市所属区 ) *
 
             GeoId生成方式：
                 countryId_provinceId_cityId_countyId
-                countryId_电话区号_邮政编码_剩下4位 (62^4)
-                3           4       6
+                countryId_邮政编码_电话区号_剩下4位 (62^4)
+                3           6       4
 		
 		group
 		postal code
