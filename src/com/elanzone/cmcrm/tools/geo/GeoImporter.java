@@ -84,116 +84,24 @@ public class GeoImporter {
         }
         // todo: check country is valid
 
-        try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-        } catch (ClassNotFoundException e) {
-            String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.no_jdbc_driver", locale);
+        GeoDealerAccessImp geoDealer = new GeoDealerAccessImp(delegator, module);
+        geoDealer.setFileName(uploadFile.getAbsolutePath());
+        String analyzeResult = geoDealer.analyzeData();
+        if (!analyzeResult.isEmpty()) {
+            String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, analyzeResult, locale);
             request.setAttribute("_ERROR_MESSAGE_", errMsg);
             Debug.logError("[GeoImporter.importCountryData] not specify country", module);
             return "error";
         }
 
-        Map<String, Province> provinces = new LinkedHashMap<String, Province>();
-        Map<String, City> citys = new LinkedHashMap<String, City>();
-        Map<String, List<City>> provinceCitys = new LinkedHashMap<String, List<City>>();
-        Map<String, County> countys = new LinkedHashMap<String, County>();
-        Map<String, List<County>> cityCountys = new LinkedHashMap<String, List<County>>();
-
-        String jdbcUrl ="jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ=" + uploadFile.getAbsolutePath();
-        String provinceSql = "select * from province";
-        String citySql = "select * from city";
-        String countySql = "select * from area";
-        Connection conn = null;
-        try {
-            conn= DriverManager.getConnection(jdbcUrl);
-            Statement stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery(provinceSql);
-            while (rs.next()) {
-                String provinceId = rs.getString("provinceID");
-                String provinceName = rs.getString("province");
-                Province province = new Province(provinceId, provinceName);
-                provinces.put(provinceId, province);
-            }
-
-            rs = stat.executeQuery(citySql);
-            while (rs.next()) {
-                String id = rs.getString("cityID");
-                String name = rs.getString("city");
-                String provinceId = rs.getString("father");
-                Province province = provinces.get(provinceId);
-                City city = new City(id, name, province);
-                List<City> pcItem = provinceCitys.get(provinceId);
-                if (pcItem == null) {
-                    pcItem = new LinkedList<City>();
-                    provinceCitys.put(provinceId, pcItem);
-                }
-                provinceCitys.get(provinceId).add(city);
-                citys.put(id, city);
-            }
-
-            rs = stat.executeQuery(countySql);
-            while (rs.next()) {
-                String id = rs.getString("areaID");
-                String name = rs.getString("area");
-                String cityId = rs.getString("father");
-                City city = citys.get(cityId);
-                County county = new County(id, name, city);
-                List<County> ccItem = cityCountys.get(cityId);
-                if (ccItem == null) {
-                    ccItem = new LinkedList<County>();
-                    cityCountys.put(cityId, ccItem);
-                }
-                cityCountys.get(cityId).add(county);
-                countys.put(id, county);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } finally {
-            if (conn!=null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
-
-        GenericValue geoItem = null, geoAssocItem = null;
-        Timestamp now = UtilDateTime.nowTimestamp();
         String errMsg = "", sucMsg= "";
-        String countryGeoId = "CHN";
-        for (Map.Entry<String, Province> item : provinces.entrySet()) {
-            Province province = item.getValue();
-            String geoId = country + "_" + province.getId();
-
-            geoItem = delegator.makeValue("Geo");
-            geoItem.set("geoId",    geoId);
-            geoItem.set("geoTypeId","PROVINCE");
-            geoItem.set("geoName",  province.getName());
-            geoItem.set("lastUpdatedStamp",     now);
-            geoItem.set("lastUpdatedTxStamp",   now);
-            geoItem.set("createdStamp",         now);
-            geoItem.set("createdTxStamp",       now);
-
-            geoAssocItem = delegator.makeValue("GeoAssoc");
-            geoAssocItem.set("geoId",   geoId);
-            geoAssocItem.set("geoIdTo", countryGeoId); // todo: find the country object
-            geoAssocItem.set("geoAssocTypeId",  "GROUP_MEMBER");
-            geoAssocItem.set("lastUpdatedStamp",     now);
-            geoAssocItem.set("lastUpdatedTxStamp",   now);
-            geoAssocItem.set("createdStamp",         now);
-            geoAssocItem.set("createdTxStamp",       now);
-
-            try {
-                delegator.create(geoItem);
-                delegator.create(geoAssocItem);
-            } catch (GenericEntityException e) {
-                errMsg = "GenericEntityException "+ UtilMisc.toMap("errMessage", e.toString());
-                Debug.logError(e, errMsg, module);
-                e.printStackTrace();
-                return "error";
-//                return ServiceUtil.returnError(errMsg);
-            }
-
+        try {
+            geoDealer.createGeoItems(country);
+        } catch (GenericEntityException e) {
+            errMsg = "GenericEntityException "+ UtilMisc.toMap("errMessage", e.toString());
+            Debug.logError(e, errMsg, module);
+            e.printStackTrace();
+            return "error";
         }
 
         // get the schedule parameters
@@ -210,6 +118,30 @@ public class GeoImporter {
 //            return "sync_success";
 //        }
         return "success";
+    }
+
+    private static void createGeoItem(Delegator delegator, String parentGeoId,
+                            String geoId, String geoName, String type, Timestamp now) throws GenericEntityException {
+        GenericValue provinceItem = delegator.makeValue("Geo");
+        provinceItem.set("geoId",    geoId);
+        provinceItem.set("geoTypeId",type);
+        provinceItem.set("geoName",  geoName);
+        provinceItem.set("lastUpdatedStamp",     now);
+        provinceItem.set("lastUpdatedTxStamp",   now);
+        provinceItem.set("createdStamp",         now);
+        provinceItem.set("createdTxStamp",       now);
+
+        GenericValue provinceAssocItem = delegator.makeValue("GeoAssoc");
+        provinceAssocItem.set("geoId",   geoId);
+        provinceAssocItem.set("geoIdTo", parentGeoId);
+        provinceAssocItem.set("geoAssocTypeId",  "GROUP_MEMBER");
+        provinceAssocItem.set("lastUpdatedStamp",     now);
+        provinceAssocItem.set("lastUpdatedTxStamp",   now);
+        provinceAssocItem.set("createdStamp",         now);
+        provinceAssocItem.set("createdTxStamp",       now);
+
+        delegator.create(provinceItem);
+        delegator.create(provinceAssocItem);
     }
 
 }
