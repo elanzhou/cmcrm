@@ -30,7 +30,7 @@
     <request-map uri="geoimporter">
         <security auth="true"/>
         <event type="java" path="com.elanzone.cmcrm.tools.geo.GeoImporter"
-               invoke="importService"/>
+               invoke="importCountryData"/>
         <response name="success" type="view" value="tools"/>
         <response name="sync_success" type="view" value="tools"/>
         <response name="error" type="view" value="tools"/>

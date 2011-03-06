@@ -5,6 +5,7 @@ import com.elanzone.cmcrm.model.County;
 import com.elanzone.cmcrm.model.Province;
 import org.ofbiz.entity.Delegator;
 
+import java.io.File;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,14 +19,16 @@ public class GeoDealerAccessImp extends GeoDealer {
     }
 
     @Override
-    public String analyzeData() {
+    public String analyzeData() throws Exception {
         try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
         } catch (ClassNotFoundException e) {
             return "geoimport.no_jdbc_driver";
         }
 
-        String jdbcUrl ="jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ=" + fileName;
+        File mdbFile = new File(fileName);
+
+        String jdbcUrl ="jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ=" + mdbFile.getAbsolutePath();
         String provinceSql = "select * from province";
         String citySql = "select * from city";
         String countySql = "select * from area";
@@ -72,8 +75,9 @@ public class GeoDealerAccessImp extends GeoDealer {
                 cityCountys.get(cityId).add(county);
                 countys.put(id, county);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        } catch (SQLException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//            return "geoimport.exception_caught";
         } finally {
             if (conn!=null) {
                 try {

@@ -25,6 +25,10 @@
         <value xml:lang="en">no files uploaded</value>
         <value xml:lang="zh">请选择上传的Geo数据文件</value>
     </property>
+    <property key="geoimport.no_upload_data">
+        <value xml:lang="en">no upload data</value>
+        <value xml:lang="zh">不能获取上传文件中的数据</value>
+    </property>
     <property key="geoimport.no_jdbc_driver">
         <value xml:lang="en">jdbc driver not found</value>
         <value xml:lang="zh">未找到对应的数据库驱动</value>
@@ -32,5 +36,9 @@
     <property key="geoimport.not_specify_country">
         <value xml:lang="en">not specify country</value>
         <value xml:lang="zh">请指定数据对应的国家</value>
+    </property>
+    <property key="geoimport.exception_caught">
+        <value xml:lang="en">exception caught while importing geo data</value>
+        <value xml:lang="zh">在导入geo数据时捕获到了错误</value>
     </property>
 </resource>

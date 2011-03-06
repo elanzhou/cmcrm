@@ -4,13 +4,13 @@
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
 
         <!-- this file is intentionally empty and is used in the build.xml file in the ofbiz root directory  -->
-    <form name="geo_importer" target="geoimporter" title="${uiTools.geoimport_title}" type="single">
+    <form name="geo_importer" target="geoimporter" title="${uiTools.geoimport_title}" type="upload">
         <field name="country" title="${uiTools.geoimport_country}">
             <drop-down allow-empty="false" allow-multiple="false">
                 <option key="CHN" description="China"/>
             </drop-down>
         </field>
-        <field name="file" title="${uiTools.geoimport_filename}"><file/></field>
+        <field name="geoData" title="${uiTools.geoimport_filename}"><file/></field>
         <field name="submit" title="${uiTools.action_geoimport}"><submit/></field>
     </form>
 

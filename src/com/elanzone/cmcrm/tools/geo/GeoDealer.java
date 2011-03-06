@@ -10,6 +10,7 @@ import org.ofbiz.entity.Delegator;
 import org.ofbiz.entity.GenericEntityException;
 import org.ofbiz.entity.GenericValue;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -36,7 +37,7 @@ public abstract class GeoDealer {
         cityCountys = new LinkedHashMap<String, List<County>>();
     }
 
-    public abstract String analyzeData();
+    public abstract String analyzeData() throws Exception;
 
     public void createGeoItems(String country) throws GenericEntityException {
         Timestamp now = UtilDateTime.nowTimestamp();
@@ -90,6 +91,25 @@ public abstract class GeoDealer {
         delegator.create(provinceAssocItem);
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////
 
+    public Map<String, Province> getProvinces() {
+        return provinces;
+    }
 
+    public Map<String, City> getCitys() {
+        return citys;
+    }
+
+    public Map<String, List<City>> getProvinceCitys() {
+        return provinceCitys;
+    }
+
+    public Map<String, County> getCountys() {
+        return countys;
+    }
+
+    public Map<String, List<County>> getCityCountys() {
+        return cityCountys;
+    }
 }

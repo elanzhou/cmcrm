@@ -1,8 +1,5 @@
 package com.elanzone.cmcrm.tools.geo;
 
-import com.elanzone.cmcrm.model.City;
-import com.elanzone.cmcrm.model.County;
-import com.elanzone.cmcrm.model.Province;
 import javolution.util.FastMap;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -14,7 +11,6 @@ import org.ofbiz.entity.GenericEntityException;
 import org.ofbiz.entity.GenericValue;
 import org.ofbiz.security.authz.Authorization;
 import org.ofbiz.service.LocalDispatcher;
-import org.ofbiz.service.ServiceUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +31,7 @@ public class GeoImporter {
         Locale locale = UtilHttp.getLocale(request);
         TimeZone timeZone = UtilHttp.getTimeZone(request);
 
-        final File uploadFile = FileUtil.getFile("runtime/tmp");
-        ServletFileUpload dfu = new ServletFileUpload(new DiskFileItemFactory(10240, uploadFile));
+        ServletFileUpload dfu = new ServletFileUpload(new DiskFileItemFactory(10240, FileUtil.getFile("runtime/tmp")));
         java.util.List lst = null;
         try {
             lst = dfu.parseRequest(request);
@@ -54,10 +49,9 @@ public class GeoImporter {
             return "error";
         }
 
+        File uploadFile = FileUtil.getFile("runtime/tmp");
         Map passedParams = FastMap.newInstance();
         FileItem fi = null;
-        FileItem imageFi = null;
-        byte[] imageBytes = {};
         for (Object aLst : lst) {
             fi = (FileItem) aLst;
             //String fn = fi.getName();
@@ -65,12 +59,19 @@ public class GeoImporter {
             if (fi.isFormField()) {
                 String fieldStr = fi.getString();
                 passedParams.put(fieldName, fieldStr);
-            } else if (fieldName.equals("imageData")) {
-                imageFi = fi;
-                imageBytes = imageFi.get();
+            } else if (fieldName.equals("geoData")) {
+                try {
+                    fi.write(uploadFile);
+                } catch (Exception e) {
+                    String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.no_upload_data", locale);
+                    request.setAttribute("_ERROR_MESSAGE_", errMsg + "\n" + e.getMessage());
+                    Debug.logInfo("[GeoImporter.importCountryData] not specify country", module);
+                    return "error";
+                }
             }
         }
         if (Debug.infoOn()) Debug.logInfo("[UploadContentAndImage]passedParams: " + passedParams, module);
+        
 
         String country = "";
         if (passedParams.containsKey("country")) {
@@ -80,29 +81,43 @@ public class GeoImporter {
             String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.not_specify_country", locale);
             request.setAttribute("_ERROR_MESSAGE_", errMsg);
             Debug.logInfo("[GeoImporter.importCountryData] not specify country", module);
+            uploadFile.deleteOnExit();
             return "error";
         }
         // todo: check country is valid
 
-        GeoDealerAccessImp geoDealer = new GeoDealerAccessImp(delegator, module);
+        GeoDealerAccessImp geoDealer = new GeoDealerAccessImp(delegator);
         geoDealer.setFileName(uploadFile.getAbsolutePath());
-        String analyzeResult = geoDealer.analyzeData();
-        if (!analyzeResult.isEmpty()) {
-            String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, analyzeResult, locale);
-            request.setAttribute("_ERROR_MESSAGE_", errMsg);
+        String analyzeResult = null;
+        try {
+            analyzeResult = geoDealer.analyzeData();
+            if (!analyzeResult.isEmpty()) {
+                String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, analyzeResult, locale);
+                request.setAttribute("_ERROR_MESSAGE_", errMsg);
+                Debug.logError("[GeoImporter.importCountryData] not specify country", module);
+                return "error";
+            }
+        } catch (Exception e) {
+            String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.exception_caught", locale);
+            request.setAttribute("_ERROR_MESSAGE_", errMsg + "\n" + e.getMessage());
             Debug.logError("[GeoImporter.importCountryData] not specify country", module);
             return "error";
+        } finally {
+            uploadFile.deleteOnExit();
         }
 
-        String errMsg = "", sucMsg= "";
-        try {
-            geoDealer.createGeoItems(country);
-        } catch (GenericEntityException e) {
-            errMsg = "GenericEntityException "+ UtilMisc.toMap("errMessage", e.toString());
-            Debug.logError(e, errMsg, module);
-            e.printStackTrace();
-            return "error";
-        }
+        String sucMsg = "province count: " + geoDealer.getProvinces().size();
+        request.setAttribute("_ERROR_MESSAGE_", sucMsg);
+
+//        String errMsg = "", sucMsg= "";
+//        try {
+//            geoDealer.createGeoItems(country);
+//        } catch (GenericEntityException e) {
+//            errMsg = "GenericEntityException "+ UtilMisc.toMap("errMessage", e.toString());
+//            Debug.logError(e, errMsg, module);
+//            e.printStackTrace();
+//            return "error";
+//        }
 
         // get the schedule parameters
 //        String jobName = (String) params.remove("JOB_NAME");
@@ -117,7 +132,8 @@ public class GeoImporter {
 //            request.getSession().setAttribute("_RUN_SYNC_RESULT_", syncServiceResult);
 //            return "sync_success";
 //        }
-        return "success";
+        return "error";
+//        return "success";
     }
 
     private static void createGeoItem(Delegator delegator, String parentGeoId,
