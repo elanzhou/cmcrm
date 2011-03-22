@@ -31,7 +31,9 @@ public class GeoImporter {
         Locale locale = UtilHttp.getLocale(request);
         TimeZone timeZone = UtilHttp.getTimeZone(request);
 
-        ServletFileUpload dfu = new ServletFileUpload(new DiskFileItemFactory(10240, FileUtil.getFile("runtime/tmp")));
+        File uploadFileDir = FileUtil.getFile("runtime/tmp");
+        File uploadFile = null;
+        ServletFileUpload dfu = new ServletFileUpload(new DiskFileItemFactory(10240, uploadFileDir));
         java.util.List lst = null;
         try {
             lst = dfu.parseRequest(request);
@@ -49,7 +51,6 @@ public class GeoImporter {
             return "error";
         }
 
-        File uploadFile = FileUtil.getFile("runtime/tmp");
         Map passedParams = FastMap.newInstance();
         FileItem fi = null;
         for (Object aLst : lst) {
@@ -61,11 +62,15 @@ public class GeoImporter {
                 passedParams.put(fieldName, fieldStr);
             } else if (fieldName.equals("geoData")) {
                 try {
+                    uploadFile = File.createTempFile("geoimporter_", ".tmp", uploadFileDir);
                     fi.write(uploadFile);
                 } catch (Exception e) {
                     String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.no_upload_data", locale);
-                    request.setAttribute("_ERROR_MESSAGE_", errMsg + "\n" + e.getMessage());
+                    request.setAttribute("_ERROR_MESSAGE_", errMsg + "\n" + "upload file path: " + uploadFileDir.getAbsolutePath() + e.getMessage());
                     Debug.logInfo("[GeoImporter.importCountryData] not specify country", module);
+                    if (uploadFile != null) {
+                        uploadFile.deleteOnExit();
+                    }
                     return "error";
                 }
             }
@@ -81,6 +86,7 @@ public class GeoImporter {
             String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.not_specify_country", locale);
             request.setAttribute("_ERROR_MESSAGE_", errMsg);
             Debug.logInfo("[GeoImporter.importCountryData] not specify country", module);
+            uploadFileDir.deleteOnExit();
             uploadFile.deleteOnExit();
             return "error";
         }
@@ -103,6 +109,7 @@ public class GeoImporter {
             Debug.logError("[GeoImporter.importCountryData] not specify country", module);
             return "error";
         } finally {
+            uploadFileDir.deleteOnExit();
             uploadFile.deleteOnExit();
         }
 
