@@ -15,7 +15,11 @@ public class GeoDealerTester extends TestCase {
         GeoDealerAccessImp geoDealer = new GeoDealerAccessImp(null);
         
         geoDealer.setFileName("docs/geo_data/zh_CN.mdb");
-        geoDealer.analyzeData();
+        try {
+            geoDealer.analyzeData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("province count: " + geoDealer.getProvinces().size());
         System.out.println("city count: " + geoDealer.getCitys().size());
         System.out.println("county count: " + geoDealer.getCountys().size());

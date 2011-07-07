@@ -3,11 +3,13 @@ package com.elanzone.cmcrm.tools.geo;
 import com.elanzone.cmcrm.model.City;
 import com.elanzone.cmcrm.model.County;
 import com.elanzone.cmcrm.model.Province;
+import javolution.util.FastMap;
 import org.ofbiz.base.util.Debug;
 import org.ofbiz.base.util.UtilDateTime;
 import org.ofbiz.base.util.UtilMisc;
 import org.ofbiz.entity.Delegator;
 import org.ofbiz.entity.GenericEntityException;
+import org.ofbiz.entity.GenericPK;
 import org.ofbiz.entity.GenericValue;
 
 import java.sql.SQLException;
@@ -52,13 +54,13 @@ public abstract class GeoDealer {
             if (theCitys == null) continue;
 
             for (City city : theCitys) {
-                String cityGeoId = provinceGeoId + "_" + city.getId();
+                String cityGeoId = country + "_" + city.getId();
                 createGeoItem(provinceGeoId, cityGeoId, city.getName(), "CITY", now);
                 List<County> theCountys = cityCountys.get(city.getId());
                 if (theCountys == null) continue;
 
                 for (County county : theCountys) {
-                    String countyGeoId = cityGeoId + "_" + county.getId();
+                    String countyGeoId = country + "_" + county.getId();
 
                     createGeoItem(cityGeoId, countyGeoId, county.getName(), "COUNTY", now);
                 }
@@ -69,26 +71,30 @@ public abstract class GeoDealer {
 
     private void createGeoItem(String parentGeoId,
                             String geoId, String geoName, String type, Timestamp now) throws GenericEntityException {
-        GenericValue provinceItem = delegator.makeValue("Geo");
-        provinceItem.set("geoId",    geoId);
-        provinceItem.set("geoTypeId",type);
-        provinceItem.set("geoName",  geoName);
-        provinceItem.set("lastUpdatedStamp",     now);
-        provinceItem.set("lastUpdatedTxStamp",   now);
-        provinceItem.set("createdStamp",         now);
-        provinceItem.set("createdTxStamp",       now);
+        GenericPK pk = delegator.makePK("Geo");
+        pk.set("geoId", geoId);
+        if (delegator.findOne("Geo", pk, true) == null) {
+            GenericValue geoItem = delegator.makeValue("Geo");
+            geoItem.set("geoId",    geoId);
+            geoItem.set("geoTypeId",type);
+            geoItem.set("geoName",  geoName);
+            geoItem.set("lastUpdatedStamp",     now);
+            geoItem.set("lastUpdatedTxStamp",   now);
+            geoItem.set("createdStamp",         now);
+            geoItem.set("createdTxStamp",       now);
 
-        GenericValue provinceAssocItem = delegator.makeValue("GeoAssoc");
-        provinceAssocItem.set("geoId",   geoId);
-        provinceAssocItem.set("geoIdTo", parentGeoId);
-        provinceAssocItem.set("geoAssocTypeId",  "GROUP_MEMBER");
-        provinceAssocItem.set("lastUpdatedStamp",     now);
-        provinceAssocItem.set("lastUpdatedTxStamp",   now);
-        provinceAssocItem.set("createdStamp",         now);
-        provinceAssocItem.set("createdTxStamp",       now);
+            GenericValue provinceAssocItem = delegator.makeValue("GeoAssoc");
+            provinceAssocItem.set("geoId",   geoId);
+            provinceAssocItem.set("geoIdTo", parentGeoId);
+            provinceAssocItem.set("geoAssocTypeId",  "GROUP_MEMBER");
+            provinceAssocItem.set("lastUpdatedStamp",     now);
+            provinceAssocItem.set("lastUpdatedTxStamp",   now);
+            provinceAssocItem.set("createdStamp",         now);
+            provinceAssocItem.set("createdTxStamp",       now);
 
-        delegator.create(provinceItem);
-        delegator.create(provinceAssocItem);
+            delegator.create(geoItem);
+            delegator.create(provinceAssocItem);
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////

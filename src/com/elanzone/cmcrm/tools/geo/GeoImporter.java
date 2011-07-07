@@ -103,6 +103,7 @@ public class GeoImporter {
                 Debug.logError("[GeoImporter.importCountryData] not specify country", module);
                 return "error";
             }
+            geoDealer.createGeoItems(country);
         } catch (Exception e) {
             String errMsg = UtilProperties.getMessage(GeoImporter.err_resource, "geoimport.exception_caught", locale);
             request.setAttribute("_ERROR_MESSAGE_", errMsg + "\n" + e.getMessage());
