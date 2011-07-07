@@ -2,24 +2,24 @@ party
 party-group
 party-type
 
-partyÀà±ğ ( type )
+partyç±»åˆ« ( type )
 	party : party-classification : party-type
 	party-type:
-		×éÖ¯(party_group)
-			·ÇÕı¹æ×éÖ¯(informal group)
-				¼ÒÍ¥(family	)
-				ÍÅ¶Ó(team)
-			Õı¹æ×éÖ¯
-				ÆóÒµ
-				Õş¸®»ú¹¹
-			»ñÖªCMÍ¾¾¶
-			À´Ô´
-			ĞĞÒµ
-		¸öÈË(person)
+		ç»„ç»‡(party_group)
+			éæ­£è§„ç»„ç»‡(informal group)
+				å®¶åº­(family	)
+				å›¢é˜Ÿ(team)
+			æ­£è§„ç»„ç»‡
+				ä¼ä¸š
+				æ”¿åºœæœºæ„
+			è·çŸ¥CMé€”å¾„
+			æ¥æº
+			è¡Œä¸š
+		ä¸ªäºº(person)
 
-party·ÖÀà ( classification )
+partyåˆ†ç±» ( classification )
 	party : party classification : party classification group
-	( group ÊÇÄ³¸ötypeµÄ¾ßÌåµÄÖµ )
+	( group æ˜¯æŸä¸ªtypeçš„å…·ä½“çš„å€¼ )
 	party classification type:
 		eeoc
 		minority
@@ -37,28 +37,28 @@ party·ÖÀà ( classification )
 		sic code
 		ownership
 
-½ÇÉ«ÀàĞÍ( role-type )
+è§’è‰²ç±»å‹( role-type )
 	paryt : party-role : role-type
 	role-type:
-		¸öÈË
-			ÄÚ²¿Ô±¹¤/¹ÍÔ±
-			¿Í»§ÁªÏµÈË
-		×éÖ¯
+		ä¸ªäºº
+			å†…éƒ¨å‘˜å·¥/é›‡å‘˜
+			å®¢æˆ·è”ç³»äºº
+		ç»„ç»‡
 			OrgUnit
-				²¿ÃÅ
-				·Ö¹«Ë¾
-				Çø
-			×îÖÕ¿Í»§
-			ÖĞ¼äÉÌ
-			¾ºÕù¶ÔÊÖ
-			ºÏ×÷»ï°é
-			ÇşµÀ
-			¹«Ë¾
-			ÔËÓªÉÌ
+				éƒ¨é—¨
+				åˆ†å…¬å¸
+				åŒº
+			æœ€ç»ˆå®¢æˆ·
+			ä¸­é—´å•†
+			ç«äº‰å¯¹æ‰‹
+			åˆä½œä¼™ä¼´
+			æ¸ é“
+			å…¬å¸
+			è¿è¥å•†
 			
 	Main
 		organization
-			association ( Ğ­»á )
+			association ( åä¼š )
 			carrier
 			competitor
 			household
@@ -71,10 +71,10 @@ party·ÖÀà ( classification )
 				parent organization unit
 				other organization unit
 			partner
-			regulatory agency ( ¹ÜÀí»ú¹¹ )
+			regulatory agency ( ç®¡ç†æœºæ„ )
 			supplier
-			tax authority ( Ë°Îñ»ú¹Ø )
-			union ( Ğ­»á£¬¹¤»á )
+			tax authority ( ç¨åŠ¡æœºå…³ )
+			union ( åä¼šï¼Œå·¥ä¼š )
 			
 		sfa ( sales force autm. )
 			account
@@ -86,15 +86,15 @@ party·ÖÀà ( classification )
 	Agent
 	automated_agent
 	calendar
-		calendar attendee ( ÈÕÀúµ½»áÕß )
-		calendar delegate ( Àú·¨´ú±í? )
+		calendar attendee ( æ—¥å†åˆ°ä¼šè€… )
+		calendar delegate ( å†æ³•ä»£è¡¨? )
 		calendar host
 		calendar organizer
 		calendar owner
 		calendar member
 	client
 	communication participant
-		addressee ( ÊÕ¼şÈË )
+		addressee ( æ”¶ä»¶äºº )
 		cc
 		bcc
 		originator
@@ -104,22 +104,22 @@ party·ÖÀà ( classification )
 		bill-to customer
 		bulk customer
 		end-user customer
-		placing-customer ( Ö±Ïú )
+		placing-customer ( ç›´é”€ )
 		ship-to customer
 	distribution channel
-		distributor ( ¾­ÏúÉÌ )
+		distributor ( ç»é”€å•† )
 	isp
 	hosting server
 	manufacturer
 	_NA_ ( not applicable )
 	owner
-	prospect (Ç±ÔÚ¿Í»§)
+	prospect (æ½œåœ¨å®¢æˆ·)
 	person
-		employee ( ¹ÍÔ± )
+		employee ( é›‡å‘˜ )
 			buyer
 			cashier
 			manager
-			order clerk ( ¶¨»õµÇ¼ÇÔ± )
+			order clerk ( å®šè´§ç™»è®°å‘˜ )
 			packer
 			picker
 			receiver
@@ -137,7 +137,7 @@ party·ÖÀà ( classification )
 	request manager
 	requesting party
 	request taker
-	shareholder ( ¹É¶« )
+	shareholder ( è‚¡ä¸œ )
 	subscriber
 	vendor
 		bill-from vendor
@@ -146,7 +146,7 @@ party·ÖÀà ( classification )
 	web master
 	workflow
 		workflow owner
-	accountant ( »á¼Æ )
+	accountant ( ä¼šè®¡ )
 	logged in
 	content member
 		content administrator
@@ -155,7 +155,7 @@ party·ÖÀà ( classification )
 		content author
 		content user
 		content guest
-	FAM_ASSIGNEE ( fixed asset maint assignee ) ¹Ì¶¨×Ê²ú±£ÑøÕß£¿
+	FAM_ASSIGNEE ( fixed asset maint assignee ) å›ºå®šèµ„äº§ä¿å…»è€…ï¼Ÿ
 		FAM supplier
 		FAM manager
 		FAM worker
@@ -171,36 +171,36 @@ party·ÖÀà ( classification )
 		provider tester
 	
 			
-party¹ØÏµ
+partyå…³ç³»
 	party-role : party-relationship : party-relationship-type
 	
 	from-role, to-role, relationship
-	Department, Department, organization rollup (²âÊÔ×é ºÍ ÑĞ·¢ÖĞĞÄ)
-	×îÖÕ¿Í»§,	·şÎñÌá¹©Õß,	customer	(139×÷Îª×îÖÕ¿Í»§ ºÍ coremail)
-	ÆóÒµÓÊÏäÔËÓªÉÌ,	ÆóÒµÓÊÏäÔËÓªÉÌ, ¾ºÕù¶ÔÊÖ (139×÷ÎªÆóÒµÓÊÏäÔËÓªÉÌ ºÍ coremail)		
-	¹ÍÔ±,		¹«Ë¾,		¹ÍÓ¶¹ØÏµ	
+	Department, Department, organization rollup (æµ‹è¯•ç»„ å’Œ ç ”å‘ä¸­å¿ƒ)
+	æœ€ç»ˆå®¢æˆ·,	æœåŠ¡æä¾›è€…,	customer	(139ä½œä¸ºæœ€ç»ˆå®¢æˆ· å’Œ coremail)
+	ä¼ä¸šé‚®ç®±è¿è¥å•†,	ä¼ä¸šé‚®ç®±è¿è¥å•†, ç«äº‰å¯¹æ‰‹ (139ä½œä¸ºä¼ä¸šé‚®ç®±è¿è¥å•† å’Œ coremail)		
+	é›‡å‘˜,		å…¬å¸,		é›‡ä½£å…³ç³»	
 
 
 GEO type
-        ĞĞÕşÇø»®£º
-            country ( ¹ú¼Ò )
-            region ( µØÇø )
-                ---- Ê¡ ----
-                province ( Ê¡ )
-                state ( Öİ )
-                municipality ( Ö±Ï½ÊĞ/×ÔÖÎÊĞ/Çø )
-                    ---- µØÇø/ÊĞ ----
-                    city ( ÊĞ )
-                    city-municipality (×ÔÖÎÖİ) *
-                    region-municipality ( Ö±Ï½ÊĞËùÊôÇø ) *
-                        ---- ÏØ ----
-                        county ( ÏØ )
-                        county-city ( ÏØ¼¶ÊĞ )
-                        region-city ( ÊĞËùÊôÇø ) *
+        è¡Œæ”¿åŒºåˆ’ï¼š
+            country ( å›½å®¶ )
+            region ( åœ°åŒº )
+                ---- çœ ----
+                province ( çœ )
+                state ( å· )
+                municipality ( ç›´è¾–å¸‚/è‡ªæ²»å¸‚/åŒº )
+                    ---- åœ°åŒº/å¸‚ ----
+                    city ( å¸‚ )
+                    city-municipality (è‡ªæ²»å·) *
+                    region-municipality ( ç›´è¾–å¸‚æ‰€å±åŒº ) *
+                        ---- å¿ ----
+                        county ( å¿ )
+                        county-city ( å¿çº§å¸‚ )
+                        region-city ( å¸‚æ‰€å±åŒº ) *
 
-            GeoIdÉú³É·½Ê½£º
+            GeoIdç”Ÿæˆæ–¹å¼ï¼š
                 countryId_provinceId_cityId_countyId
-                countryId_ÓÊÕş±àÂë_µç»°ÇøºÅ_Ê£ÏÂ4Î» (62^4)
+                countryId_é‚®æ”¿ç¼–ç _ç”µè¯åŒºå·_å‰©ä¸‹4ä½ (62^4)
                 3           6       4
 		
 		group
@@ -212,17 +212,17 @@ GEO type
 
 
 GEO association type
-        GROUP_MEMBER    : ÈçÖĞ¹úÊôÓÚÑÇÖŞ
-        REGIONS         : Èçsales territory»ª±±Çø°üÀ¨±±¾©µÈÊ¡·İ£¬ÄÇÃ´GeoAssocÖĞ:
-                            geoId=¡°±±¾©¡±µÈÊ¡·İ,
-                            geoIdTo=¡°ÏúÊÛ»ª±±Çø¡±,
+        GROUP_MEMBER    : å¦‚ä¸­å›½å±äºäºšæ´²
+        REGIONS         : å¦‚sales territoryååŒ—åŒºåŒ…æ‹¬åŒ—äº¬ç­‰çœä»½ï¼Œé‚£ä¹ˆGeoAssocä¸­:
+                            geoId=â€œåŒ—äº¬â€ç­‰çœä»½,
+                            geoIdTo=â€œé”€å”®ååŒ—åŒºâ€,
                             geoAssocTypeId=REGIONS
-        COUNTY_SEAT     : ÏØ³Ç
+        COUNTY_SEAT     : å¿åŸ
 
-        Ò»¸öÇø¶ÔÓ¦¶à¸öÓÊÕş±àÂëµÄÇé¿ö£¿Ò»¸öÓÊÕş±àÂë¶ÔÓ¦¶àÌõ½ÖµÀµÄÇé¿ö£¿
+        ä¸€ä¸ªåŒºå¯¹åº”å¤šä¸ªé‚®æ”¿ç¼–ç çš„æƒ…å†µï¼Ÿä¸€ä¸ªé‚®æ”¿ç¼–ç å¯¹åº”å¤šæ¡è¡—é“çš„æƒ…å†µï¼Ÿ
 
 
-ÏúÊÛÇøÓòÓëÁªÏµÊÂ¼ş²é¿´È¨ÏŞµÄ¶ÔÓ¦¹ØÏµ?
+é”€å”®åŒºåŸŸä¸è”ç³»äº‹ä»¶æŸ¥çœ‹æƒé™çš„å¯¹åº”å…³ç³»?
 
 
 ContactMechType
@@ -233,9 +233,9 @@ ContactMechType
         WEB_ADDRESS
         INTERNAL_PARTYID
         LDAP_ADDRESS
-    TELECOM_NUMBER (TelecomNumber±í)
-    POSTAL_ADDRESS (PostAddress±í)
+    TELECOM_NUMBER (TelecomNumberè¡¨)
+    POSTAL_ADDRESS (PostAddressè¡¨)
 
 
-GEO ºÍ µç»°¹ú¼Ò±àÂë¡¢ÇøºÅµÄ¹ØÏµ?
+GEO å’Œ ç”µè¯å›½å®¶ç¼–ç ã€åŒºå·çš„å…³ç³»?
 

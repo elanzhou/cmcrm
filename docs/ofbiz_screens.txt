@@ -1,0 +1,50 @@
+decorator-section-include
+
+GlobalDecorator
+	pre-body
+	body
+
+LookupDecorator
+	如果body不为空，则显示body
+	否则显示
+		search-options
+		search-results
+		
+SimpleDecorator
+	body
+	
+FoReportDecorator
+	topLeft topRight
+	body
+
+GlobalFoDecorator
+	start.fo.ftl
+	basic-header.fo.ftl
+	basic-footer.fo.ftl
+	
+FindScreenDecorator
+	menu-bar
+	search-options
+	search-results
+
+
+----- common ext -----	
+ApplicationDecorator
+	使用GlobalDecorator
+		pre-body
+		body
+			[left-column] body
+
+
+----- humanres -----
+main-decorator
+	ApplicationDecorator
+
+Main
+	main-decorator
+		body -> OrgTree
+	
+CommonEmplPositionDecorator
+	main-decorator
+		pre-body -> include-menu
+		body
