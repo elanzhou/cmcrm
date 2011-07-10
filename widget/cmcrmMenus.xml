@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-menu.xsd">
-    <menu name="MainAppBar" title="${uiLabelMap.cmcrmApplication}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
+    <menu name="MainAppBar" title="${cmcrmUI.Application}" extends="CommonAppBarMenu" extends-resource="component://common/widget/CommonMenus.xml">
         <menu-item name="main" title="${uiLabelMap.CommonMain}"><link target="main"/></menu-item>
-        <menu-item name="org" title="${uiLabelMap.cmcrmOrgStructure}"><link target="org"/></menu-item>
+        <menu-item name="company" title="${cmcrmUI.MenuCompany}"><link target="company"/></menu-item>
+        <menu-item name="org" title="${cmcrmUI.OrgStructure}"><link target="org"/></menu-item>
         <menu-item name="tools" title="${uiTools.page_tools}"><link target="tools"/></menu-item>
     </menu>
 </menus>

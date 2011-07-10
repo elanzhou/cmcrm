@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!-- This file has been modified by Open Source Strategies, Inc. -->
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
+    <form name="EditCompany" type="single" target="updateCompany" default-map-name="partyGroup"
+        focus-field-name="groupNameLocal" header-row-style="header-row" default-table-style="basic-table">
+        <alt-target use-when="partyGroup==null" target="createCompany"/>
+        <auto-fields-service service-name="updateCompany"/>
+        <field use-when="partyGroup!=null" name="partyId" title="${uiLabelMap.PartyPartyId}" tooltip="${uiLabelMap.CommonNotModifRecreat}"><display/></field>
+        <field use-when="partyGroup==null&amp;&amp;partyId==null" name="partyId" title="${uiLabelMap.PartyPartyId}"><ignored/></field>
+        <field use-when="partyGroup==null&amp;&amp;partyId!=null" name="partyId" title="${uiLabelMap.PartyPartyId}" tooltip="${uiLabelMap.CommonCannotBeFound}: [${partyId}]"><display also-hidden="false"/></field>
+        <field name="groupNameLocal" tooltip="${uiLabelMap.CommonRequired}" widget-style="required"></field>
+        <field name="partyTypeId"><ignored/></field>
+        <field name="description" title="${uiLabelMap.CommonDescription}"><text/></field>
+        <field name="preferredCurrencyUomId">
+            <drop-down allow-empty="true" no-current-selected-key="${defaultOrganizationPartyCurrencyUomId}">
+                <entity-options key-field-name="uomId" description="${description} - ${abbreviation}" entity-name="Uom">
+                    <entity-constraint name="uomTypeId" operator="equals" value="CURRENCY_MEASURE"/>
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="statusId" use-when="partyGroup==null"><hidden/></field>
+        <field name="statusId" use-when="partyGroup!=null">
+            <drop-down allow-empty="false">
+                <entity-options description="${description}" entity-name="StatusItem">
+                    <entity-constraint name="statusTypeId" value="PARTY_STATUS"/>
+                    <entity-order-by field-name="sequenceId"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}"><submit button-type="button"/></field>
+        <field name="cancelLink" title="${uiLabelMap.CommonEmptyHeader}" widget-style="smallSubmit">
+            <hyperlink target="${donePage}" also-hidden="false" description="${uiLabelMap.CommonCancelDone}">
+                <parameter param-name="partyId"/>
+            </hyperlink>
+        </field>
+    </form>
+</forms>

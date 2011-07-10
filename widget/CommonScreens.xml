@@ -5,18 +5,18 @@
     <screen name="main-decorator">
         <section>
             <actions>
-                <property-map resource="cmcrmUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="HumanResUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="cmcrmUiLabels" map-name="cmcrmUI" global="true"/>
                 <property-map resource="cmcrmToolsUiLabels" map-name="uiTools" global="true"/>
 
-                <set field="layoutSettings.companyName" from-field="uiLabelMap.cmcrmCompanyName" global="true"/>
-                <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.cmcrmCompanySubtitle" global="true"/>
+                <set field="layoutSettings.companyName" from-field="cmcrmUI.CompanyName" global="true"/>
+                <set field="layoutSettings.companySubtitle" from-field="cmcrmUI.CompanySubtitle" global="true"/>
 
                 <set field="activeApp" value="cmcrm" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://cmcrm/widget/cmcrmMenus.xml" global="true"/>
-                <set field="applicationTitle" value="${uiLabelMap.cmcrmApplication}" global="true"/>
+                <set field="applicationTitle" value="${cmcrmUI.Application}" global="true"/>
             </actions>
             <widgets>
                 <include-screen name="GlobalDecorator" location="component://common/widget/CommonScreens.xml"/>
@@ -40,7 +40,7 @@
                                 <decorator-section-include name="body"/>
                             </widgets>
                             <fail-widgets>
-                                <label style="h3">${uiLabelMap.cmcrmViewPermissionError}</label>
+                                <label style="h3">${cmcrmUI.ViewPermissionError}</label>
                             </fail-widgets>
                         </section>
                     </decorator-section>
