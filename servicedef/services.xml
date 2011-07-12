@@ -2,7 +2,22 @@
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
     <description>cmcrm Services</description>
-    <vendor></vendor>
+    <vendor>www.elanzone.com</vendor>
     <version>1.0</version>
+
+    <service name="createCompany" engine="java" default-entity-name="PartyGroup"
+            location="com.elanzone.cmcrm.party.PartyServices" invoke="createCompany" auth="false">
+        <description>Create the Company</description>
+        <auto-attributes mode="INOUT" include="pk" optional="true"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true"/>
+        <override name="groupNameLocal" optional="false"/>
+    </service>
+    <service name="updateCompany" engine="java" default-entity-name="PartyGroup"
+            location="com.elanzone.cmcrm.party.PartyServices" invoke="updateCompany" auth="true">
+        <description>Update the Company</description>
+        <permission-service service-name="partyGroupPermissionCheck" main-action="UPDATE"/>
+        <auto-attributes mode="IN" include="pk" optional="true"/>
+        <auto-attributes mode="IN" include="nonpk" optional="true"/>
+    </service>
 
 </services>
