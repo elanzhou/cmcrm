@@ -1,8 +1,7 @@
 # 公司信息管理
     UI: design/company.bmml
     services:
-        createCompany
-        updateCompany
+        createOrUpdateCompany
 # 组织架构管理
 # 职员管理
 # 客户、客户联系人管理
