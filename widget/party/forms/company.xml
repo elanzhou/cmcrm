@@ -21,15 +21,14 @@
 
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
-    <form name="EditCompany" type="single" target="updateCompany" default-map-name="partyGroup"
+    <form name="EditCompany" type="single" target="createOrUpdateCompany" default-map-name="partyGroup"
         focus-field-name="groupNameLocal" header-row-style="header-row" default-table-style="basic-table">
-        <alt-target use-when="partyGroup==null" target="createCompany"/>
-        <auto-fields-service service-name="updateCompany"/>
-        <field use-when="partyGroup!=null" name="partyId" title="${uiLabelMap.PartyPartyId}" tooltip="${uiLabelMap.CommonNotModifRecreat}"><display/></field>
-        <field use-when="partyGroup==null&amp;&amp;partyId==null" name="partyId" title="${uiLabelMap.PartyPartyId}"><ignored/></field>
-        <field use-when="partyGroup==null&amp;&amp;partyId!=null" name="partyId" title="${uiLabelMap.PartyPartyId}" tooltip="${uiLabelMap.CommonCannotBeFound}: [${partyId}]"><display also-hidden="false"/></field>
-        <field name="groupNameLocal" tooltip="${uiLabelMap.CommonRequired}" widget-style="required"></field>
-        <field name="partyTypeId"><ignored/></field>
+        <auto-fields-service service-name="createOrUpdateCompany"/>
+        <field name="groupNameLocal" title="${uiLabelMap.party.company.company_name}" tooltip="${uiLabelMap.CommonRequired}" widget-style="required"></field>
+        <field name="groupName" title="${uiLabelMap.party.company.company_code}"></field>
+        <field name="logo" title="${uiLabelMap.party.company.company_logo}"><file/></field>
+        <field name="website" title="${uiLabelMap.party.company.website}"><text/></field>
+        <!-- todo: geo selector -->
         <field name="description" title="${uiLabelMap.CommonDescription}"><text/></field>
         <field name="preferredCurrencyUomId">
             <drop-down allow-empty="true" no-current-selected-key="${defaultOrganizationPartyCurrencyUomId}">

@@ -26,4 +26,25 @@
         <value xml:lang="en">/</value>
         <value xml:lang="zh">公司架构</value>
     </property>
+
+    <property key="party.company.company_name">
+        <value xml:lang="en">company name</value>
+        <value xml:lang="zh">公司名称</value>
+    </property>
+    <property key="party.company.company_code">
+        <value xml:lang="en">company code</value>
+        <value xml:lang="zh">公司代号</value>
+    </property>
+    <property key="party.company.company_logo">
+        <value xml:lang="en">logo</value>
+        <value xml:lang="zh">logo</value>
+    </property>
+    <property key="party.company.website">
+        <value xml:lang="en">website</value>
+        <value xml:lang="zh">网址</value>
+    </property>
+    <property key="party.company.postaddress">
+        <value xml:lang="en">address</value>
+        <value xml:lang="zh">地址</value>
+    </property>
 </resource>

@@ -27,6 +27,9 @@ public class PartyServices {
         String companyPartyId = "COMPANY";
         String partygroupServiceName;
         try {
+            // todo: company logo
+            // todo: company address
+            // todo: website
             GenericValue company = delegator.findByPrimaryKey("Party", UtilMisc.toMap("partyId", companyPartyId));
             if (company == null) {
                 partygroupServiceName = "createPartyGroup";
