@@ -1,8 +1,23 @@
-# 公司信息管理
-    UI: design/company.bmml
-    services:
-        createOrUpdateCompany
-# 组织架构管理
+h2. 公司信息管理
+UI : design/company.bmml
+
+h4. services
+# createOrUpdateCompany
+## create or update DataResource from upload file
+	attachUploadToDataResource
+		DataResourceType: 会根据上传文件的content type来自动判断DataResourceType
+		传递 dataResourceId 变量则更新现有的DataResource
+## create or update Content from DataResource and associate it to the Company
+	createContentFromDataResource
+## create or update Company PartyGroup
+## create ContactMechanism and associate it to the Company
+## create Geo and associate it to the Company
+		
+		
+h2. 组织架构管理
 # 职员管理
 # 客户、客户联系人管理
 # 沟通事件管理
+
+
+
