@@ -1,6 +1,51 @@
 h2. 公司信息管理
 UI : design/company.bmml
 
+h4. use cases
+# 显示公司信息
+creator/administrator可创建/修改company partygroup; 公司职工可查看公司信息
+## get Company PartyGroup by UserLogin
+## get company related logo resource
+## get company related geo info
+# 创建/修改公司信息
+
+
+h4. entity relationship
+# Party, PartyGroup and UserLogin
+	PartyGroup的creator: Party中保存了createdByUserLogin
+	从UserLogin中获得对应的Party/Person
+		UserLogin --partyId-- Party --partyId-- Person
+		UserLogin --partyId-- Person
+	Party/Person所属的公司
+		Employment
+			PartyIdFrom 作为 INTERNAL_ORGANIZATIO 角色(RoleTypeIdFrom) 
+			partyIdTo 作为 EMPLOYEE (RoleTypeIdTo) 角色
+			于 FromDate 建立雇佣关系
+		PartyRelationship
+			party relationship type:	
+				child, parent
+				account, parent account
+				assistant, employee, lead owner(lead owned by), lead owners/managers, lead relation, manager, owner(owned by), reports to, sales_affiliate
+				agent, distributor, group rollup(group member)
+				contact relation, 
+				customer, partner, spouse, supplier
+				friend, 
+				host server visitor, isp visitor, web master
+			partyIdFrom 作为 INTERNAL_ORGANIZATIO 角色(RoleTypeIdFrom)
+			partyIdTo 作为 EMPLOYEE (RoleTypeIdTo) 角色
+			于 FromDate 建立 EMPLOYMENT (PartyRelationshipTypeId) 关系
+# Party/PartyGroup vs. Content
+	Party --PartyContent-- Content
+                |
+            PartyContentType
+	PartyContentType:
+		internal content, logo image url, user defined content, vendor shipping info
+# DataResouce vs. download link
+
+
+
+
+
 h4. services
 # createOrUpdateCompany
 ## create or update DataResource from upload file
